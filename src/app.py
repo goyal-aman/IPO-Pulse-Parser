@@ -7,7 +7,8 @@ import requests
 
 
 # API URL
-api_url = "http://192.168.1.2:5678/api/data"  # Using the provided API URL
+BASE_URL = "https://5678-goyalaman-ipopulseapi-lo8ctl1ussc.ws-us116.gitpod.io"
+api_url = f"{BASE_URL}/api/data"  # Using the provided API URL
 
 def fetch_ipo_data():
     response = requests.get(api_url)
@@ -91,7 +92,6 @@ def generate_html(ipo_data):
     # Create table rows from the IPO data
     rows = ""
     for ipo in ipo_data:
-        print(ipo)
         row = f"""
                   
         <tr>
