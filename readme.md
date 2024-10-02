@@ -10,7 +10,7 @@ docker build -t ipo-pulse-parser .
 docker run --rm -p 5678:5678 amangoyal8110/ipo-pulse-api:latest
 
 # Generated HTML
-docker run -e BASE_URL=http://localhost:5678 -v $PWD/generated:/app/generated ipo-pulse-parser  
+sudo docker run -e BASE_URL=http://localhost:5678 -v $PWD/generated:/app/generated amangoyal8110/ipo-pulse-parser:latest
 ```
 
 # Scope of Improvements
