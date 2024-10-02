@@ -4,10 +4,12 @@ v0.0.1
 Not the best thing I have written, but it works
 """
 import requests
+import os
 
 
-# API URL
-BASE_URL = "https://5678-goyalaman-ipopulseapi-lo8ctl1ussc.ws-us116.gitpod.io"
+OUTPUT_DIR = 'generated'
+BASE_URL = os.environ["BASE_URL"] 
+
 api_url = f"{BASE_URL}/api/data"  # Using the provided API URL
 
 def fetch_ipo_data():
@@ -117,13 +119,13 @@ def generate_html(ipo_data):
     html_content = html_template.format(rows=rows)
 
     # Write to an HTML file
-    with open("ipo_pulse.html", "w") as file:
+    with open(f"{OUTPUT_DIR}/index.html", "w") as file:
         file.write(html_content)
 
 if __name__ == "__main__":
     try:
         ipo_data = fetch_ipo_data()
         generate_html(ipo_data)
-        print("HTML file generated successfully: ipo_pulse.html")
+        print(f"HTML file generated successfully: {OUTPUT_DIR}/index.html")
     except Exception as e:
         print(f"An error occurred: {e}")
