@@ -10,7 +10,7 @@ docker build -t ipo-pulse-parser .
 docker run --rm -p 5678:5678 amangoyal8110/ipo-pulse-api:latest
 
 # start parser
-sudo docker run -p 5679:5679 -e IPO_PULSE_BASE_URL=http://localhost:5678 amangoyal8110/ipo-pulse-parser:latest
+sudo docker run -p 5679:5679 -e IPO_PULSE_BASE_URL=http://localhost:5678 amangoyal8110/ipo-pulse-parser:9
 
 # get parsed html
 curl localhost:5679/api/html
