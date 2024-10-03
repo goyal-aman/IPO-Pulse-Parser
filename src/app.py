@@ -5,15 +5,15 @@ Not the best thing I have written, but it works
 """
 import requests
 import os
+from flask import Flask
 
 
 OUTPUT_DIR = 'generated'
-BASE_URL = os.environ["BASE_URL"] 
-
-api_url = f"{BASE_URL}/api/data"  # Using the provided API URL
+IPO_PULSE_BASE_URL = os.environ["IPO_PULSE_BASE_URL"] 
+API_URL = f"{IPO_PULSE_BASE_URL}/api/data"  # Using the provided API URL
 
 def fetch_ipo_data():
-    response = requests.get(api_url)
+    response = requests.get(API_URL)
     response.raise_for_status()  # Raise an error for bad responses
     return response.json()
 
@@ -123,15 +123,15 @@ def generate_html(ipo_data):
 
     # Fill the template with the rows
     html_content = html_template.format(rows=rows)
+    return html_content
 
-    # Write to an HTML file
-    with open(f"{OUTPUT_DIR}/index.html", "w") as file:
-        file.write(html_content)
 
-if __name__ == "__main__":
-    try:
-        ipo_data = fetch_ipo_data()
-        generate_html(ipo_data)
-        print(f"HTML file generated successfully: {OUTPUT_DIR}/index.html")
-    except Exception as e:
-        print(f"An error occurred: {e}")
+app = Flask(__name__)
+
+@app.route('/api/html', methods=['GET'])
+def get_data():
+    ipo_data = fetch_ipo_data()
+    return {"data": generate_html(ipo_data)}
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5679)
