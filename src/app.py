@@ -23,6 +23,7 @@ def generate_html(ipo_data):
 <html lang="en">
 <head>
     <meta name="google" content="notranslate"/>
+    <meta name="google-adsense-account" content="ca-pub-4757594580756122">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IPO Pulse</title>
