@@ -64,10 +64,14 @@ def generate_html(ipo_data):
                 <thead class="thead-dark">
                     <tr>
                         <th>IPO</th>
-                        <th>GMP (₹)</th>
-                        <th>Price</th>
+                        <th>Status</th>
 
+                        <th>Price</th>
+                        <th>GMP (₹)</th>
                         <th>Est Listing</th>
+                        
+                        <th>Subscription</th>
+                        
                         <th>Open</th>
                         <th>Close</th>
                         
@@ -102,17 +106,23 @@ def generate_html(ipo_data):
     rows = ""
     for ipo in ipo_data:
         row = f"""
-                  
-        <tr>
+        <tr class="{ipo['meta']['row_class']}">
+
+        
             <td>{ipo['IPO']}</td>
-            <td>{ipo['GMP(₹)']}</td>
+            <td>{ipo['status']}</td>
             
             <td>{ipo['Price']}</td>
+            <td>{ipo['GMP(₹)']}</td>
             <td>{ipo['Est Listing']}</td>
-            <td>{ipo['Open']}</td>
+
+            <td>{[str(ipo['subs'])+"x","NA"][ipo['subs']==None]}</td>
             
+            
+            <td>{ipo['Open']}</td>
             <td>{ipo['Close']}</td>
             <td>{ipo['BoA Dt']}</td>
+            
             <td>{ipo['Listing']}</td>
 
             <td>{ipo['Lot']}</td>
