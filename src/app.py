@@ -61,7 +61,7 @@ def generate_html(ipo_data):
     <div class="container table-container">
         <button onclick="downloadCSV()"type="button" class="btn btn-primary btn-block">Download</button>       
         <div class="table-responsive">
-            <table class="table table-bordered table-striped">
+            <table id="myTable" class="table table-bordered table-striped">
                 <thead class="thead-dark">
                     <tr>
                         <th>IPO</th>
@@ -101,27 +101,27 @@ def generate_html(ipo_data):
     <!-- Bootstrap JS (Optional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
+      <script>
         // JavaScript to download the table as CSV
-        function downloadCSV() {
+        function downloadCSV() {{
             var csv = [];
             var rows = document.querySelectorAll("#myTable tr");
     
             // Loop through the rows of the table
-            for (var i = 0; i < rows.length; i++) {
+            for (var i = 0; i < rows.length; i++) {{
                 var row = [], cols = rows[i].querySelectorAll("td, th");
     
                 // Loop through the columns in the current row
-                for (var j = 0; j < cols.length; j++) {
+                for (var j = 0; j < cols.length; j++) {{
                     row.push(cols[j].innerText);
-                }
+                }}
     
                 // Join the columns to form a CSV row and add it to the csv array
                 csv.push(row.join(","));
-            }
+            }}
     
             // Create a CSV file from the array and trigger download
-            var csvContent = "data:text/csv;charset=utf-8," + csv.join("\n");
+            var csvContent = "data:text/csv;charset=utf-8," + csv.join("\\n");
             var encodedUri = encodeURI(csvContent);
             var link = document.createElement("a");
             link.setAttribute("href", encodedUri);
@@ -131,7 +131,7 @@ def generate_html(ipo_data):
             // Trigger the download
             link.click();
             document.body.removeChild(link);
-        }
+        }}
     </script>
     
 </body>
